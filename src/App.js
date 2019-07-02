@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
+import Header from './header';
 
 export default class App extends React.Component() {
   state={
@@ -121,9 +122,9 @@ export default class App extends React.Component() {
   render(){
   return (
     <div className='App'>
-      <Header> 
-        <h1> Noteful </h1>
-       <Header /> 
+      <header />
+      <main />
+      <sidebar />
 
       
     </div>
