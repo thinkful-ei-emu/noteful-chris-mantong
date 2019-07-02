@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
-import Header from './component/header';
+// import Header from './component/header';
 import Sidebar from './component/sidebar';
 import FolderSidebar from './component/FolderSidebar';
 import FolderMain from './component/Folder-Main';
@@ -10,8 +10,6 @@ import NoteMain from './component/NoteMain';
 
 export default class App extends React.Component {
   state={
-    folderId: "b0715efe-ffaf-11e8-8eb2-f2801f1b9fd1",
-    noteId: 'cbc787a0-ffaf-11e8-8eb2-f2801f1b9fd1',
     "folders": [
       {
         "id": "b0715efe-ffaf-11e8-8eb2-f2801f1b9fd1",
@@ -143,50 +141,49 @@ export default class App extends React.Component {
 // }
 
     return (
-      <div className='App'>
-       <nav>
-         <Link to='/'> <h1>Noteful</h1></Link>
-       </nav>
-       <main>
+      <section className='App'>
+        <nav>
+          <Link to='/'><h1>Noteful</h1></Link>
+        </nav>
+        <main>
           <Route 
-            path='/' 
+            exact path='/' 
+            render={()=>
+              <Sidebar folders={this.state.folders} />
+            }
+          />  
+          <Route 
+            exact path='/' 
             render={()=>
               <Main notes={this.state.notes} />
             }
-           />  
+          />  
            
-          <Route path='/Folder'
-            render={()=>
-            <FolderMain notes={this.state.notes} />
-          }
-         /> 
-
-         /></main>
-        
-          <Route path='/' 
+          <Route path='/Folder/:folderId' 
             render={(props)=>
-              <Sidebar folders={this.state.folders} />
+              <FolderSidebar match={props.match} folders={this.state.folders} />
             }
-           />  
-          <Route path='/Folder' 
-             render={(props)=>
-              <FolderSidebar folders={this.state.folders} />
-             }
-            /> 
+          /> 
 
-
-           <Route path='/' 
+          <Route path='/Folder/:folderId'
             render={(props)=>
-              <NoteMain noteId={this.state.noteId} notes={this.state.notes} />
+              <FolderMain match={props.match} notes={this.state.notes} />
             }
-           />  
-          <Route path='/Note' 
+          />  
+          <Route path='/Note/:noteId' 
              render={(props)=>
-              <NoteSidebar folders={this.state.noteId} />
+              <NoteSidebar match={props.match} notes={this.state.notes} folders={this.state.noteId} />
              }
             />
 
-         </div>
+          <Route path='/Note/:noteId' 
+            render={(props)=>
+              <NoteMain match={props.match} notes={this.state.notes} />
+            }
+            />  
+          
+        </main>
+      </section>
         
     );
         }

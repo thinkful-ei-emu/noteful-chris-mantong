@@ -1,14 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 import './FolderSidebar.css';
 
-function FolderSidebar({folders, folderId}) {
-    const folder = folders.map(folder => folder.id === folderId ? 
-        <div className="selected"><button key={folder.id}>{folder.name}</button></div> : <div><button key={folder.id}>{folder.name}</button></div>)
+function FolderSidebar(props) {
+    const folder = props.folders.map(folder => folder.id === props.match.params.folderId ? 
+        <li className="selected" key={folder.id}><Link to={`/Folder/${folder.id}`}>{folder.name}
+        </Link></li> : <li><Link to={`/Folder/${folder.id}`}>{folder.name}</Link></li>)
     return (
-    <div>
+    <ul>
         {folder}
         
-    </div>
+    </ul>
     )
 }
 
