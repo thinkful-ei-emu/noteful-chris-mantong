@@ -1,7 +1,10 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
+import Header from './component/header';
+import Sidebar from './component/sidebar';
+import Main from './component/main';
 
-export default class App extends React.Component() {
+export default class App extends React.Component {
   state={
     "folders": [
       {
@@ -119,15 +122,14 @@ export default class App extends React.Component() {
     ]
   }
   render(){
-  return (
-    <div className='App'>
-      <Header> 
-        <h1> Noteful </h1>
-       <Header /> 
-
-      
-    </div>
-  );
-}
+    return (
+      <>
+        <Header />
+        <Sidebar folders={this.state.folders} />
+        <Main notes={this.state.notes} />
+        {/* <Route exact path='/' render={() => <Main-Page folder={this.state.folders} notes={this.state.notes} />} /> */}
+      </>
+    );
+  }
 }
 
