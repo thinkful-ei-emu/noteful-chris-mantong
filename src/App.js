@@ -5,9 +5,13 @@ import Sidebar from './component/sidebar';
 import FolderSidebar from './component/FolderSidebar';
 import FolderMain from './component/Folder-Main';
 import Main from './component/main';
+import NoteSidebar from './component/NoteSidebar';
+import NoteMain from './component/NoteMain';
 
 export default class App extends React.Component {
   state={
+    folderId: "b0715efe-ffaf-11e8-8eb2-f2801f1b9fd1",
+    noteId: 'cbc787a0-ffaf-11e8-8eb2-f2801f1b9fd1',
     "folders": [
       {
         "id": "b0715efe-ffaf-11e8-8eb2-f2801f1b9fd1",
@@ -124,43 +128,54 @@ export default class App extends React.Component {
     ]
   }
   render(){
-    return (
-      <>
-       
-        <Header />
-        
-          <Route path='/' 
-            render={(props)=>
-              <Sidebar folders={this.state.folders} />
-            }
-           />  
-          <Route path='/Folder' 
-             render={(props)=>
-              <FolderSidebar folders={this.state.folders} />
-             }
-            /> 
-        
-        <Main>
-          <Route path='/' 
-            render={()=>
-              <Main notes={this.state.notes} />
-            }
-           />  
-           
-          <Route path='/Folder'
-            render={()=>
-            <FolderMain notes={this.state.notes} />
-          }
-         /> 
-
-         /></Main>
-        
-
-
-       
-        {/* <Route exact path='/' render={() => <Main-Page folder={this.state.folders} notes={this.state.notes} />} /> */}
-      </>
-    );
+    return(
+    <div>
+      <Header />
+      {/* <Sidebar folders={this.state.folders} />
+      <Main notes={this.state.notes} /> */}
+      {/* <FolderSidebar folders={this.state.folders} folderId={this.state.folderId} />
+      <FolderMain notes={this.state.notes} folderId={this.state.folderId} /> */}
+      <NoteSidebar folders={this.state.folders} folderId={this.state.folderId} />
+      <NoteMain notes={this.state.notes} noteId={this.state.noteId} />
+    </div>
+    )
   }
 }
+  //   return (
+  //     <>
+       
+  //       <Header />
+        
+  //         <Route path='/' 
+  //           render={(props)=>
+  //             <Sidebar folders={this.state.folders} />
+  //           }
+  //          />  
+  //         <Route path='/Folder' 
+  //            render={(props)=>
+  //             <FolderSidebar folders={this.state.folders} />
+  //            }
+  //           /> 
+        
+  //       <Main>
+  //         <Route path='/' 
+  //           render={()=>
+  //             <Main notes={this.state.notes} />
+  //           }
+  //          />  
+           
+  //         <Route path='/Folder'
+  //           render={()=>
+  //           <FolderMain notes={this.state.notes} />
+  //         }
+  //        /> 
 
+  //        /></Main>
+        
+
+
+       
+  //       {/* <Route exact path='/' render={() => <Main-Page folder={this.state.folders} notes={this.state.notes} />} /> */}
+  //     </>
+  //   );
+  // }

@@ -1,10 +1,11 @@
 import React from 'react';
+import './FolderSidebar.css';
 
-function FolderSidebar({folders}) {
-    const folder = folders.map(folder => <div><button onClick={folder.name} key={folder.id}>{folder.name}</button></div>)
+function FolderSidebar({folders, folderId}) {
+    const folder = folders.map(folder => folder.id === folderId ? 
+        <div className="selected"><button key={folder.id}>{folder.name}</button></div> : <div><button key={folder.id}>{folder.name}</button></div>)
     return (
     <div>
-        <button type="button">Add folder</button>
         {folder}
         
     </div>

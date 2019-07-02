@@ -1,15 +1,15 @@
 import React from 'react';
 
-function FolderMain({notes, folderId}) {
-    const newNote = notes.map(note => note.folderId === folderId ? (
+function NoteMain({notes, noteId}) {
+    const newNote = notes.map(note => note.id === noteId ? (
         <div>
             <div>{note.name}</div>
             <div>Date modified on {note.modified}</div>
             <button>Delete Note</button>
-            <button>Add note</button>
+            <p>{note.content}</p>
         </div>
         ) : '' )
     return <div>{newNote}</div>
 }
 
-export default FolderMain;
+export default NoteMain;
