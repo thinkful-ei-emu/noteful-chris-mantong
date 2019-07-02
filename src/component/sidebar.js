@@ -5,6 +5,7 @@ function Sidebar({folders}) {
     return (
     <div>
         {folder}
+        
     </div>
     )
 }

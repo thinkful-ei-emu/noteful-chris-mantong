@@ -2,6 +2,8 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import Header from './component/header';
 import Sidebar from './component/sidebar';
+import FolderSidebar from './component/FolderSidebar';
+import FolderMain from './component/Folder-Main';
 import Main from './component/main';
 
 export default class App extends React.Component {
@@ -124,9 +126,38 @@ export default class App extends React.Component {
   render(){
     return (
       <>
+       
         <Header />
-        <Sidebar folders={this.state.folders} />
-        <Main notes={this.state.notes} />
+        
+          <Route path='/' 
+            render={(props)=>
+              <Sidebar folders={this.state.folders} />
+            }
+           />  
+          <Route path='/Folder' 
+             render={(props)=>
+              <FolderSidebar folders={this.state.folders} />
+             }
+            /> 
+        
+        <Main>
+          <Route path='/' 
+            render={()=>
+              <Main notes={this.state.notes} />
+            }
+           />  
+           
+          <Route path='/Folder'
+            render={()=>
+            <FolderMain notes={this.state.notes} />
+          }
+         /> 
+
+         /></Main>
+        
+
+
+       
         {/* <Route exact path='/' render={() => <Main-Page folder={this.state.folders} notes={this.state.notes} />} /> */}
       </>
     );
