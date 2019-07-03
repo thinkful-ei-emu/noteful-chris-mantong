@@ -3,15 +3,24 @@ import { Link } from 'react-router-dom'
 
 function Main({notes}) {
     const newNote = notes.map(note => (
-        <div>
+        <li>
             <div><Link to={`/Note/${note.id}`}>{note.name}</Link></div>
             <div>Date modified on {note.modified}</div>
             <button>Delete Note</button>
-            <button>Add note</button>
-        </div>
+            
+        </li>
         )
     )
-    return <div>{newNote}</div>
+    return (
+    <div>
+        <ul>
+            {newNote}
+        </ul>
+        <div>
+            <button>Add note</button>
+        </div>
+    </div>
+    )
 }
 
 export default Main;

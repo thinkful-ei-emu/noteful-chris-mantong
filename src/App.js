@@ -126,19 +126,6 @@ export default class App extends React.Component {
     ]
    }
   render(){
-//     return(
-//     <div>
-//       <Header />
-//       <Sidebar folders={this.state.folders} />
-//       <Main notes={this.state.notes} />
-//       <FolderSidebar folders={this.state.folders} folderId={this.state.folderId} />
-//       <FolderMain notes={this.state.notes} folderId={this.state.folderId} />
-//       <NoteSidebar folders={this.state.folders} folderId={this.state.folderId} />
-//       <NoteMain notes={this.state.notes} noteId={this.state.noteId} />
-//     </div>
-//     )
-//   }
-// }
 
     return (
       <section className='App'>
@@ -172,7 +159,7 @@ export default class App extends React.Component {
           />  
           <Route path='/Note/:noteId' 
              render={(props)=>
-              <NoteSidebar match={props.match} notes={this.state.notes} folders={this.state.noteId} />
+              <NoteSidebar {...props} notes={this.state.notes} folders={this.state.folders} />
              }
             />
 
